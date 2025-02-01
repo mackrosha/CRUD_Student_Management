@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} Create/Udate Student {% endblock %}
+
+{% block content %}
+
+{%if edit %}
+           <h1 class="container text-center mt-5">Edit_Student Database</h1>
+      {%else%}
+           <h1 class="container text-center mt-5">Create_Student Database</h1>
+     {%endif%}
+      {% comment %} form start {% endcomment %}
+      {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+      <form class="container mt-5", method="POST" enctype="multipart/form-data" novalidate>
+      {%csrf_token%}
+      {{form | crispy}}
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </from>
+
+{% endblock %}

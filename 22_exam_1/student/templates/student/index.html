@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Home Page {% endblock %}
+{% block content %}
+<h1 class="container text-center mt-5">Al Student List</h1>
+      <div class="d-flex justify-content-around flex-wrap container mt-5 mb-5">
+        {%for student in students %}
+
+        <div class="card mt-5" style= "width: 18rem;">
+          <img src="{{student.photo.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{student.fullname}}</h5>
+            <p class="card-text">Student id:- {{student.id}}</p>
+            <p class="card-text">Student Email:- {{student.email}}</p>
+            <p class="card-text">Student Phone:- {{student.number}}</p>
+            <p class="card-text">Course Name:- {{student.course}}</p>
+            <a href="{% url 'update_student' id=student.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'delete_student' id=student.id %}" class="btn btn-danger">Delete</a>
+          </div>
+        </div>
+        {%endfor%}
+{% endblock %}
